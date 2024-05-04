@@ -5,11 +5,7 @@ import { usePathname } from 'next/navigation';
 import React from 'react'
 
 const Navigation = () => {
-
   const pathname = usePathname();
-  console.log('my pathname')
-  console.log(pathname)
-
   return (
       <nav className='bg-slate-400 w-full'>
         <ul className=' w-auto flex justify-evenly'>
