@@ -1,7 +1,15 @@
+import React from "react";
 import Navigation from "@/components/Navigation";
 import "./globals.css";
+import { createClient } from "@/utils/supabase/server";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+
+  const supabase = createClient();
+  const data = await supabase.from('places').select('*');
+
+  console.log('data')
+  console.log(data)
 
   return (
     <html>
@@ -10,6 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Navigation />
           </div>
           <div>
+            {data.data}
             {children}
         </div>
       </body>
