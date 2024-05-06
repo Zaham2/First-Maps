@@ -3,19 +3,15 @@
 import React from 'react'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { Library } from '@googlemaps/js-api-loader';
+import { MapProps } from '@/helpers/classes';
 
-class MapProps {
-    constructor(initialCenter: { lat: number; lng: number; }, zoomLevel: number, apiKey: string) {
-        this.initialCenter = initialCenter;
-        this.zoomLevel = zoomLevel;
-        this.apiKey = process.env.MAPS_API_KEY!;
-    }
-    initialCenter: { lat: number; lng: number };
-    zoomLevel: number;
-    apiKey: string;
+const splitLatLong = (latLong: string) => {
+  const [lat, lng] = latLong.trim().split(',')
+  return { lat: parseFloat(lat), lng: parseFloat(lng) }
 }
 
-export const Map = (props: MapProps) => {
+
+export const Map = ({ apiKey, initialCenter, zoomLevel, places}: MapProps) => {
     const [map, setMap] = React.useState(null);
   
     const libraries: Library[] = ['places']; // Optional: Enable places library for search
@@ -23,8 +19,6 @@ export const Map = (props: MapProps) => {
     const handleLoad = (mapInstance: any) => {
       setMap(mapInstance);
     };
-
-    const apiKey = props.apiKey;
   
     return (
       <LoadScript
@@ -33,12 +27,15 @@ export const Map = (props: MapProps) => {
       >
         <GoogleMap
           mapContainerStyle={{ width: '100%', height: '400px' }}
-          zoom={props.zoomLevel}
-          center={props.initialCenter}
+          zoom={zoomLevel}
+          center={initialCenter}
           onLoad={handleLoad}
         >
           {/* Add markers or other map elements here if needed */}
-          {map && <Marker position={props.initialCenter} />}
+          {/* {map && <Marker position={initialCenter} />} */}
+          {map && places.map((place) => (
+            <Marker key={place.id} position={splitLatLong(place.lat_long!)} />
+          ))}
         </GoogleMap>
       </LoadScript>
     );
