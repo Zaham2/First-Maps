@@ -2,6 +2,7 @@ import React from "react";
 import Navigation from "@/components/Navigation";
 import "./globals.css";
 import { Metadata } from "next";
+import GlobalProvider from "@/providers/GlobalProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL('http://localhost:3000'),
@@ -13,16 +14,17 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
 
   return (
-    <html>
-      <body>
+    <GlobalProvider>
+      <html>
+        <body>
           <div>
             <Navigation />
           </div>
           <div>
-            {/* {data.data} */}
             {children}
-        </div>
-      </body>
-    </html>
+          </div>
+        </body>
+      </html>
+    </GlobalProvider>
   );
 }
