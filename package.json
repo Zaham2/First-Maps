@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@api/fsq-developers": "file:.api/apis/fsq-developers",
     "@googlemaps/js-api-loader": "^1.16.6",
     "@react-google-maps/api": "^2.19.3",
     "@supabase/ssr": "latest",

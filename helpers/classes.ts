@@ -1,3 +1,5 @@
+import React from "react";
+
 export class Places {
     id!: number;
     start_ts!: Date | null;
@@ -11,24 +13,42 @@ export class Places {
     activity_duration_seconds!: number | null;
     activity_duration_hours!: number | null;
     activity_duration_formatted!: string | null;
+    // marker!: google.maps.Marker | null;
 }
 
 export interface MapProps {
     initialCenter: { lat: number; lng: number };
-    zoomLevel: number;
+    defaultZoomLevel: number;
     apiKey: string;
     places: Places[]
 }
 
+export interface Point {
+   lat: number;
+   lng: number;
+}
+
 // I know its the same props :)
 export interface MapContainerProps {
-    initialCenter: { lat: number; lng: number };
-    zoomLevel: number;
+    // initialCenter: Point;
+    defaultZoomLevel: number;
     apiKey: string;
     places: Places[];
+    // children: React.ReactNode;
   }
 
 export interface MarkerProps {
     lat: number;
     lng: number;
+    place: Places;
+    children: React.ReactNode;
 }
+
+export interface BubbleProps {
+    place: Places
+    // children: React.ReactNode;
+}
+
+// export interface Marker {
+
+// }

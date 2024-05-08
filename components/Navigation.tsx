@@ -16,9 +16,6 @@ const Navigation = () => {
             <Link href={'/home'} >Fetch Places</Link>
           </li>
           <li className='inline'>
-            <Link href={'/'} >Switch</Link>
-          </li>
-          <li className='inline'>
             <Link href={'/'} >Nearby</Link>
           </li>
         </ul>
