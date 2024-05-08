@@ -13,7 +13,7 @@ const Navigation = () => {
             <Link href={'/'} >Home</Link>
           </li>
           <li className='inline'>
-            <Link href={'/home'} >Fetch Places</Link>
+            <Link href={'/api/places'} target='_blank'>Fetch Places</Link>
           </li>
           <li className='inline'>
             <Link href={'/'} >Nearby</Link>
